@@ -7,10 +7,13 @@ import { Reminders } from "../models/index";
 import EditIcon from "@heroicons/react/24/outline/PencilSquareIcon";
 import DeleteIcon from "@heroicons/react/24/outline/TrashIcon";
 import Moment from "moment";
+import UpdateReminderModal from "./modals/UpdateReminderModal";
 
 function Main() {
   const [reminders, setReminders] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [rowData, setRowData] = useState({});
+  const [updateReminderModal, setUpdateReminderModal] = useState(false);
 
   useEffect(() => {
     getReminders();
@@ -66,7 +69,14 @@ function Main() {
                 <span className="">{rem?.status}</span>
               </td>
               <td>
-                <EditIcon className="w-5 inline mr-2 cursor-pointer" title="Edit" />
+                <EditIcon
+                  className="w-5 inline mr-2 cursor-pointer"
+                  title="Edit"
+                  onClick={() => {
+                    setRowData(rem);
+                    setUpdateReminderModal(true);
+                  }}
+                />
                 <DeleteIcon className="w-5 inline cursor-pointer" title="Delete" />
               </td>
             </tr>
@@ -84,6 +94,12 @@ function Main() {
         </div>
       )}
       <Pagination currRecords={reminders.length} totalRecords={reminders.length} />
+      <UpdateReminderModal
+        isOpen={updateReminderModal}
+        toggle={() => setUpdateReminderModal(!updateReminderModal)}
+        refresh={getReminders}
+        rowData={rowData}
+      />
     </div>
   );
 }
