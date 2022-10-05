@@ -8,7 +8,7 @@ Built using React, AWS Amplify
 - Add pagination logic
 - Add filters logic
 - Add pending and completed records logic
-- Fix grid height issue
+- Fix grid height issue - Done
 - Fix custom message ui
 - Fix recipients ui it should be able to take multiple email addresses
 - Add preview option
