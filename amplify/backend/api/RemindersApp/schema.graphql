@@ -1,0 +1,10 @@
+type Reminders @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+  recipients: String!
+  message: String!
+  scheduledOn: AWSDateTime!
+  status: String!
+}
+ 
