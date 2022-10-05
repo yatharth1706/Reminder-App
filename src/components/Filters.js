@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Input } from "reactstrap";
 import reminderImage from "../images/icons/reminder.png";
+import CreateReminderModal from "./modals/CreateReminderModal";
 
-function Filters() {
+function Filters({ refresh }) {
+  const [createModalState, setCreateModalState] = useState(false);
+
   return (
     <div className="flex justify-between">
       <div className="flex space-x-6">
@@ -10,9 +13,15 @@ function Filters() {
         <Input type="date" style={{ width: "200px" }} />
       </div>
       <div>
-        <Button color="primary" className="flex">
+        <Button color="primary" className="flex" onClick={() => setCreateModalState(true)}>
           Create Reminder
         </Button>
+
+        <CreateReminderModal
+          isOpen={createModalState}
+          toggle={() => setCreateModalState(!createModalState)}
+          refresh={refresh}
+        />
       </div>
     </div>
   );

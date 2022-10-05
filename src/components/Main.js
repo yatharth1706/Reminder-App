@@ -39,7 +39,7 @@ function Main() {
   return (
     <div className="bg-white drop-shadow-2xl rounded-md w-5/6 h-96 p-8">
       {/* Filters */}
-      <Filters />
+      <Filters refresh={getReminders} />
       <Table bordered className="mt-6">
         <thead>
           <tr className="text-gray-700 font-normal">
@@ -52,7 +52,7 @@ function Main() {
         <tbody>
           {reminders.map((rem) => (
             <tr className="text-gray-700">
-              <td>
+              <td title={rem?.name}>
                 {rem?.name}
                 <br />
                 <span className="text-xs text-gray-500">{rem?.description}</span>
@@ -66,8 +66,8 @@ function Main() {
                 <span className="">{rem?.status}</span>
               </td>
               <td>
-                <EditIcon className="w-5 inline mr-2" />
-                <DeleteIcon className="w-5 inline" />
+                <EditIcon className="w-5 inline mr-2 cursor-pointer" title="Edit" />
+                <DeleteIcon className="w-5 inline cursor-pointer" title="Delete" />
               </td>
             </tr>
           ))}
