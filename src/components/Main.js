@@ -83,7 +83,7 @@ function Main() {
           <span>No reminders found</span>
         </div>
       )}
-      <Pagination />
+      <Pagination currRecords={reminders.length} totalRecords={reminders.length} />
     </div>
   );
 }

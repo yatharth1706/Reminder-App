@@ -7,7 +7,7 @@ function Filters() {
     <div className="flex justify-between">
       <div className="flex space-x-6">
         <Input type="search" placeholder="Search any reminder ..." style={{ width: "200px" }} />
-        <Input type="datetime-local" style={{ width: "200px" }} />
+        <Input type="date" style={{ width: "200px" }} />
       </div>
       <div>
         <Button color="primary" className="flex">

@@ -1,10 +1,10 @@
 import React from "react";
 import { PaginationItem, PaginationLink, Pagination } from "reactstrap";
 
-function PaginationPage() {
+function PaginationPage({currRecords, totalRecords}) {
   return (
     <div className="flex justify-between text-sm text-gray-600 mt-10">
-      <span>0 of 0 Records</span>
+      <span>{currRecords} of {totalRecords} Records</span>
       <span>
         <Pagination>
           <PaginationItem>
