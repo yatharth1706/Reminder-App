@@ -4,9 +4,16 @@ Built using React, AWS Amplify
 
 ## Remaining things:
 
-- State management for left sidebar
-- Modals UI
-- Create / Update and Delete operations left
+- Improve responsiveness
+- Add pagination logic
+- Add filters logic
+- Add pending and completed records logic
+- Fix grid height issue
+- Fix custom message ui
+- Fix recipients ui it should be able to take multiple email addresses
+- Add preview option
+- Calender ui
+- Add Authentication Login, Signup, Logout
 - Reminder business logic
 
 # Getting Started with Create React App

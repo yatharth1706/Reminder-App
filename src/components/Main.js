@@ -8,12 +8,14 @@ import EditIcon from "@heroicons/react/24/outline/PencilSquareIcon";
 import DeleteIcon from "@heroicons/react/24/outline/TrashIcon";
 import Moment from "moment";
 import UpdateReminderModal from "./modals/UpdateReminderModal";
+import DeleteReminderModal from "./modals/DeleteReminderModal";
 
 function Main() {
   const [reminders, setReminders] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [rowData, setRowData] = useState({});
   const [updateReminderModal, setUpdateReminderModal] = useState(false);
+  const [deleteReminderModal, setDeleteReminderModal] = useState(false);
 
   useEffect(() => {
     getReminders();
@@ -77,7 +79,14 @@ function Main() {
                     setUpdateReminderModal(true);
                   }}
                 />
-                <DeleteIcon className="w-5 inline cursor-pointer" title="Delete" />
+                <DeleteIcon
+                  className="w-5 inline cursor-pointer"
+                  title="Delete"
+                  onClick={() => {
+                    setRowData(rem);
+                    setDeleteReminderModal(true);
+                  }}
+                />
               </td>
             </tr>
           ))}
@@ -97,6 +106,12 @@ function Main() {
       <UpdateReminderModal
         isOpen={updateReminderModal}
         toggle={() => setUpdateReminderModal(!updateReminderModal)}
+        refresh={getReminders}
+        rowData={rowData}
+      />
+      <DeleteReminderModal
+        isOpen={deleteReminderModal}
+        toggle={() => setDeleteReminderModal(!deleteReminderModal)}
         refresh={getReminders}
         rowData={rowData}
       />
