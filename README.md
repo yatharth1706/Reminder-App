@@ -1,3 +1,14 @@
+# Reminder App
+
+Built using React, AWS Amplify
+
+## Remaining things:
+
+- State management for left sidebar
+- Modals UI
+- Create / Update and Delete operations left
+- Reminder business logic
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
