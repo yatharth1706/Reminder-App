@@ -5,7 +5,15 @@ module.exports = {
     fontFamily: {
       nunito: ["nunito", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      maxHeight: {
+        128: "32rem",
+      },
+      height: {
+        100: "28rem",
+        128: "32rem",
+      },
+    },
   },
   plugins: [],
 };

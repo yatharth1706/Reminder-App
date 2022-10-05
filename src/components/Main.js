@@ -42,7 +42,7 @@ function Main() {
   };
 
   return (
-    <div className="bg-white drop-shadow-2xl rounded-md w-5/6 h-96 p-8">
+    <div className="bg-white drop-shadow-2xl rounded-md w-5/6 p-8">
       {/* Filters */}
       <Filters refresh={getReminders} />
       <Table bordered className="mt-6">

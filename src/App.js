@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Router>
-      <div className="font-nunito h-full">
+      <div className="font-nunito h-full max-w-7xl mx-auto">
         {/* Navbar */}
         <Navbar />
         {/* Routes */}

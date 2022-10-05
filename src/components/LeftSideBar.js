@@ -13,7 +13,7 @@ function LeftSideBar() {
   };
 
   return (
-    <div className="bg-white drop-shadow-2xl rounded-md w-1/6 h-96 flex flex-col space-y-3 px-3 py-6">
+    <div className="bg-white drop-shadow-2xl rounded-md w-1/6 flex flex-col space-y-3 px-3 py-6">
       <span
         onClick={() => handleChangeNav("All")}
         className={
