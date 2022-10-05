@@ -13,7 +13,7 @@ function Navbar() {
         <Link to="/reminders" className="text-md underline decoration-blue-500 underline-offset-8">
           Reminders
         </Link>
-        <Link to="/logout" className="text-md">
+        <Link to="/logout" className="text-md decoration-white text-gray-800">
           Logout
         </Link>
       </span>

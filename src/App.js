@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reminder from "./components/Reminder";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
