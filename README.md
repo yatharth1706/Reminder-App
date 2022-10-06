@@ -7,14 +7,15 @@ Built using React, AWS Amplify
 - Improve responsiveness
 - Add pagination logic
 - Add filters logic
-- Add pending and completed records logic
-- Fix grid height issue - Done
-- Fix custom message ui
-- Fix recipients ui it should be able to take multiple email addresses
-- Add preview option
+- Add pending and completed records logic - ✅
+- Fix grid height issue - ✅
+- Fix custom message ui - ✅
+- Fix recipients ui it should be able to take multiple email addresses - (WIP)
+- Add preview option - ✅
 - Calender ui
-- Add Authentication Login, Signup, Logout
+- Add Authentication Login, Signup, Logout - (WIP)
 - Reminder business logic
+- Add toast notifications when some operations are performed
 
 # Getting Started with Create React App
 

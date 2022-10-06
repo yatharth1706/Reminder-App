@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalBody, ModalHeader, ModalFooter, Label, Input } from "reactstrap";
 import { DataStore } from "@aws-amplify/datastore";
 import { Reminders } from "../../models/index";
+import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 
 function UpdateReminderModal({ isOpen, toggle, refresh, rowData }) {
   const [modalData, setModalData] = useState({
@@ -101,11 +103,17 @@ function UpdateReminderModal({ isOpen, toggle, refresh, rowData }) {
           </div>
           <div className="mb-3">
             <Label>Custom Message</Label>
-            <Input
-              type="textarea"
-              value={modalData?.CustomMessage}
-              onChange={(e) => handleChange("CustomMessage", e.target.value)}
-            />
+            <div data-color-mode="light">
+              <MDEditor
+                value={modalData?.CustomMessage}
+                onChange={(e) => {
+                  handleChange("CustomMessage", e);
+                }}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+            </div>
           </div>
           <div className="mb-3">
             <Label>Scheduled On</Label>

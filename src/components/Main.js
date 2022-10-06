@@ -9,8 +9,11 @@ import DeleteIcon from "@heroicons/react/24/outline/TrashIcon";
 import Moment from "moment";
 import UpdateReminderModal from "./modals/UpdateReminderModal";
 import DeleteReminderModal from "./modals/DeleteReminderModal";
+import { useRecoilState } from "recoil";
+import { sideNavAtom } from "../atoms/Sidenav";
 
 function Main() {
+  const [sideNav, setSideNav] = useRecoilState(sideNavAtom);
   const [reminders, setReminders] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [rowData, setRowData] = useState({});
@@ -22,12 +25,27 @@ function Main() {
   }, []);
 
   useEffect(() => {
+    getReminders();
+  }, [sideNav]);
+
+  useEffect(() => {
     console.log(reminders);
   }, [reminders]);
 
   const getReminders = async () => {
     setIsFetching(true);
-    const models = await DataStore.query(Reminders);
+    let models = [];
+    console.log(sideNav);
+    if (sideNav === "Pending") {
+      models = await DataStore.query(Reminders, (rem) => rem.status("eq", "Pending"));
+    } else if (sideNav === "Completed") {
+      models = await DataStore.query(Reminders, (rem) => rem.status("eq", "Completed"));
+    } else if (sideNav === "All") {
+      models = await DataStore.query(Reminders);
+    } else {
+      models = await DataStore.query(Reminders);
+    }
+
     console.log(models, typeof models);
     setReminders([...models]);
     setIsFetching(false);
