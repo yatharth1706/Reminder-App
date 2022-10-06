@@ -10,6 +10,11 @@
       "StackName": "amplify-musicapp-staging-35742",
       "StackId": "arn:aws:cloudformation:ap-south-1:434786282596:stack/amplify-musicapp-staging-35742/899fc580-3e18-11ed-898a-06070d6cfa0e",
       "AmplifyAppId": "dxqgmdv4s2o7x"
+    },
+    "categories": {
+      "auth": {
+        "RemindersApp": {}
+      }
     }
   }
 }
