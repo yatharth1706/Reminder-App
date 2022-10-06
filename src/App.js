@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reminder from "./components/Reminder";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 
 function App() {
   return (
@@ -21,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

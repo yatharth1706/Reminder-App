@@ -12,6 +12,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+div[data-amplify-container] {
+  font-family: "nunito", "sans-serif";
+}
+
+.amplify-button--primary:active {
+  background-color: "#3B82F6" !important;
+}
+
+/* .amplify-tabs-item[data-state="active"] {
+} */
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

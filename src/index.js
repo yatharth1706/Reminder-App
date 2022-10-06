@@ -7,6 +7,7 @@ import { RecoilRoot } from "recoil";
 import config from "./aws-exports";
 import Amplify from "aws-amplify";
 import { AmplifyProvider } from "@aws-amplify/ui-react";
+
 Amplify.configure(config);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
