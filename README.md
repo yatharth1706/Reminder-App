@@ -5,8 +5,8 @@ Built using React, AWS Amplify
 ## Remaining things:
 
 - Improve responsiveness
-- Add pagination logic
-- Add filters logic
+- Add pagination logic (WIP)
+- Add filters logic (WIP)
 - Add pending and completed records logic - ✅
 - Fix grid height issue - ✅
 - Fix custom message ui - ✅

@@ -19,6 +19,11 @@ function Main() {
   const [rowData, setRowData] = useState({});
   const [updateReminderModal, setUpdateReminderModal] = useState(false);
   const [deleteReminderModal, setDeleteReminderModal] = useState(false);
+  const [currPage, setCurrPage] = useState(1);
+  const [currRecords, setCurrRecords] = useState(0);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [lastPage, setLastPage] = useState(0);
+  const [currReminders, setCurrReminders] = useState([]);
 
   useEffect(() => {
     getReminders();
@@ -31,6 +36,10 @@ function Main() {
   useEffect(() => {
     console.log(reminders);
   }, [reminders]);
+
+  useEffect(() => {
+    paginate();
+  }, [currPage, reminders]);
 
   const getReminders = async () => {
     setIsFetching(true);
@@ -49,6 +58,44 @@ function Main() {
     console.log(models, typeof models);
     setReminders([...models]);
     setIsFetching(false);
+  };
+
+  const paginate = () => {
+    let noOfRecordsPerPage = 2;
+    let totalPages = Math.ceil(reminders.length / noOfRecordsPerPage);
+    setLastPage(totalPages);
+
+    let finalRecords = reminders.slice(
+      (currPage - 1) * noOfRecordsPerPage,
+      (currPage - 1) * noOfRecordsPerPage + noOfRecordsPerPage
+    );
+
+    console.log(finalRecords);
+    console.log(
+      (currPage - 1) * noOfRecordsPerPage,
+      (currPage - 1) * noOfRecordsPerPage + noOfRecordsPerPage
+    );
+    console.log(totalPages, currPage, noOfRecordsPerPage, reminders);
+
+    setCurrReminders([...finalRecords]);
+    setCurrRecords((currPage - 1) * noOfRecordsPerPage + noOfRecordsPerPage);
+  };
+
+  const incrementPage = (page) => {
+    if (page + 1 <= lastPage) {
+      setCurrPage(page + 1);
+    }
+  };
+  const decrementPage = (page) => {
+    if (page - 1 >= 1) {
+      setCurrPage(page - 1);
+    }
+  };
+  const goToFirstPage = () => {
+    setCurrPage(1);
+  };
+  const goToLastPage = () => {
+    setCurrPage(lastPage);
   };
 
   const getBackgroundColor = (status) => {
@@ -73,7 +120,7 @@ function Main() {
           </tr>
         </thead>
         <tbody>
-          {reminders.map((rem) => (
+          {currReminders.map((rem) => (
             <tr className="text-gray-700">
               <td title={rem?.name}>
                 {rem?.name}
@@ -120,7 +167,15 @@ function Main() {
           <span>No reminders found</span>
         </div>
       )}
-      <Pagination currRecords={reminders.length} totalRecords={reminders.length} />
+      <Pagination
+        incrementPage={incrementPage}
+        decrementPage={decrementPage}
+        firstPage={goToFirstPage}
+        lastPage={goToLastPage}
+        currPage={currPage}
+        currRecords={currRecords}
+        totalRecords={totalRecords}
+      />
       <UpdateReminderModal
         isOpen={updateReminderModal}
         toggle={() => setUpdateReminderModal(!updateReminderModal)}

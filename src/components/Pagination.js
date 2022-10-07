@@ -1,26 +1,36 @@
 import React from "react";
 import { PaginationItem, PaginationLink, Pagination } from "reactstrap";
 
-function PaginationPage({currRecords, totalRecords}) {
+function PaginationPage({
+  currPage,
+  currRecords,
+  totalRecords,
+  firstPage,
+  lastPage,
+  decrementPage,
+  incrementPage,
+}) {
   return (
     <div className="flex justify-between text-sm text-gray-600 mt-10">
-      <span>{currRecords} of {totalRecords} Records</span>
+      <span>
+        {currRecords} of {totalRecords} Records
+      </span>
       <span>
         <Pagination>
           <PaginationItem>
-            <PaginationLink first href="#" />
+            <PaginationLink first onClick={() => firstPage()} />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" previous />
+            <PaginationLink previous onClick={() => decrementPage(currPage)} />
           </PaginationItem>
           <PaginationItem active>
-            <PaginationLink href="#">1</PaginationLink>
+            <PaginationLink>{currPage}</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" next />
+            <PaginationLink next onClick={() => incrementPage(currPage)} />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" last />
+            <PaginationLink last onClick={() => lastPage()} />
           </PaginationItem>
         </Pagination>
       </span>
