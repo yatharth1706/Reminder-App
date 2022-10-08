@@ -15,7 +15,7 @@ Built using React, AWS Amplify
 - Calender ui - (In last)
 - Add Authentication Login, Signup, Logout
 - Reminder business logic - (In last)
-- Add toast notifications when some operations are performed (WIP)
+- Add toast notifications when some operations are performed ✅
 
 # Getting Started with Create React App
 
