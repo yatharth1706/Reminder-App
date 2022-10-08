@@ -4,6 +4,7 @@ import { DataStore } from "@aws-amplify/datastore";
 import { Reminders } from "../../models/index";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
+import { toast } from "react-toastify";
 
 function CreateReminderModal({ isOpen, toggle, refresh }) {
   const [modalData, setModalData] = useState({
@@ -40,20 +41,41 @@ function CreateReminderModal({ isOpen, toggle, refresh }) {
   };
 
   const handleCreate = async () => {
-    setIsSaving(true);
-    await DataStore.save(
-      new Reminders({
-        name: modalData?.Name,
-        description: modalData?.Description,
-        recipients: modalData?.Recipient,
-        message: modalData?.CustomMessage,
-        scheduledOn: modalData?.ScheduledOn,
-        status: "Pending",
-      })
-    );
-    setIsSaving(false);
-    toggle();
-    refresh();
+    try {
+      setIsSaving(true);
+      await DataStore.save(
+        new Reminders({
+          name: modalData?.Name,
+          description: modalData?.Description,
+          recipients: modalData?.Recipient,
+          message: modalData?.CustomMessage,
+          scheduledOn: modalData?.ScheduledOn,
+          status: "Pending",
+        })
+      );
+      setIsSaving(false);
+      toast(`Reminder created successfully`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      toggle();
+      refresh();
+    } catch (e) {
+      toast(`Some error occured while creating the reminder: ${e}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (

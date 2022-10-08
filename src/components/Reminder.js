@@ -1,6 +1,8 @@
 import React from "react";
 import LeftSideBar from "./LeftSideBar";
 import Main from "./Main";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Reminder() {
   return (
@@ -9,6 +11,7 @@ function Reminder() {
       <LeftSideBar />
       {/* Main Grid */}
       <Main />
+      <ToastContainer />
     </div>
   );
 }

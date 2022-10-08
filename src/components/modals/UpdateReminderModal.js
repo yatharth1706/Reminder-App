@@ -4,6 +4,7 @@ import { DataStore } from "@aws-amplify/datastore";
 import { Reminders } from "../../models/index";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
+import { toast } from "react-toastify";
 
 function UpdateReminderModal({ isOpen, toggle, refresh, rowData }) {
   const [modalData, setModalData] = useState({
@@ -52,22 +53,43 @@ function UpdateReminderModal({ isOpen, toggle, refresh, rowData }) {
   };
 
   const handleUpdate = async () => {
-    setIsSaving(true);
-    const original = await DataStore.query(Reminders, rowData?.id);
-    console.log(original);
-    await DataStore.save(
-      Reminders.copyOf(original, (existing) => {
-        existing.name = modalData?.Name;
-        existing.description = modalData?.Description;
-        existing.recipients = modalData?.Recipient;
-        existing.message = modalData?.CustomMessage;
-        existing.scheduledOn = modalData?.ScheduledOn;
-        existing.status = "Pending";
-      })
-    );
-    setIsSaving(false);
-    toggle();
-    refresh();
+    try {
+      setIsSaving(true);
+      const original = await DataStore.query(Reminders, rowData?.id);
+      console.log(original);
+      await DataStore.save(
+        Reminders.copyOf(original, (existing) => {
+          existing.name = modalData?.Name;
+          existing.description = modalData?.Description;
+          existing.recipients = modalData?.Recipient;
+          existing.message = modalData?.CustomMessage;
+          existing.scheduledOn = modalData?.ScheduledOn;
+          existing.status = "Pending";
+        })
+      );
+      setIsSaving(false);
+      toast(`Reminder updated successfully`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      toggle();
+      refresh();
+    } catch (e) {
+      toast(`Some error occured while updating the reminder: ${e}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
