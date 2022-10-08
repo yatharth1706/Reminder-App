@@ -6,7 +6,7 @@ Built using React, AWS Amplify
 
 - Improve responsiveness
 - Add pagination logic ✅
-- Add filters logic (WIP)
+- Add filters logic ✅
 - Add pending and completed records logic - ✅
 - Fix grid height issue - ✅
 - Fix custom message ui - ✅
