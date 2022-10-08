@@ -12,10 +12,10 @@ Built using React, AWS Amplify
 - Fix custom message ui - ✅
 - Fix recipients ui it should be able to take multiple email addresses - (WIP)
 - Add preview option - ✅
-- Calender ui
-- Add Authentication Login, Signup, Logout - (WIP)
-- Reminder business logic
-- Add toast notifications when some operations are performed
+- Calender ui - (In last)
+- Add Authentication Login, Signup, Logout
+- Reminder business logic - (In last)
+- Add toast notifications when some operations are performed (WIP)
 
 # Getting Started with Create React App
 

@@ -24,6 +24,9 @@ function Main() {
   const [totalRecords, setTotalRecords] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [currReminders, setCurrReminders] = useState([]);
+  const [search, setSearch] = useState("");
+  const [scheduledOn, setScheduledOn] = useState("");
+  const [allReminders, setAllReminders] = useState([]);
 
   useEffect(() => {
     getReminders();
@@ -41,6 +44,28 @@ function Main() {
     paginate();
   }, [currPage, reminders]);
 
+  useEffect(() => {
+    filterRecords(search, scheduledOn);
+  }, [search, scheduledOn]);
+
+  const filterRecords = (search, scheduledOn) => {
+    let existingRecords = [...allReminders];
+    if (search) {
+      existingRecords = existingRecords.filter((rem) =>
+        rem.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      );
+    }
+
+    console.log(scheduledOn);
+    if (scheduledOn) {
+      existingRecords = existingRecords.filter((rem) => {
+        return rem.scheduledOn.includes(scheduledOn);
+      });
+    }
+
+    setReminders([...existingRecords]);
+  };
+
   const getReminders = async () => {
     setIsFetching(true);
     let models = [];
@@ -57,6 +82,7 @@ function Main() {
 
     console.log(models, typeof models);
     setReminders([...models]);
+    setAllReminders([...models]);
     setIsFetching(false);
   };
 
@@ -106,10 +132,15 @@ function Main() {
     }
   };
 
+  const setFilters = (searchVal, scheduledOnVal) => {
+    setSearch(searchVal);
+    setScheduledOn(scheduledOnVal);
+  };
+
   return (
     <div className="bg-white drop-shadow-2xl rounded-md w-5/6 p-8">
       {/* Filters */}
-      <Filters refresh={getReminders} />
+      <Filters handleFilters={setFilters} refresh={getReminders} sideNav={sideNav} />
       <Table bordered className="mt-6">
         <thead>
           <tr className="text-gray-700 font-normal">
