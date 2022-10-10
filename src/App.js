@@ -1,12 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reminder from "./components/Reminder";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { withAuthenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import ForgotPassword from "./components/ForgotPassword";
+import Confirm from "./components/Confirm";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -17,10 +20,15 @@ function App() {
         {/* Routes */}
         <Routes>
           <Route path="/reminders" element={<Reminder />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/confirm" element={<Confirm />} />
         </Routes>
+        <ToastContainer />
       </div>
     </Router>
   );
 }
 
-export default withAuthenticator(App);
+export default App;

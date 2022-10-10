@@ -13,9 +13,12 @@ Built using React, AWS Amplify
 - Fix recipients ui it should be able to take multiple email addresses - (WIP)
 - Add preview option - ✅
 - Calender ui - (In last)
-- Add Authentication Login, Signup, Logout
+- Add Authentication Login, Signup, Logout ✅
 - Reminder business logic - (In last)
 - Add toast notifications when some operations are performed ✅
+- Forgot password and set new password remaining (Picked)
+- Token and user details to pass while crud operations (Picked)
+- Show only logged in user reminders (Picked)
 
 # Getting Started with Create React App
 
