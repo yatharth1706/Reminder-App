@@ -8,10 +8,13 @@ import Logo from "../images/Hash.png";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
     try {
+      setIsLoading(true);
       const user = await Auth.signIn(email, password);
+      setIsLoading(false);
       console.log(user);
       localStorage.setItem("CognitoUser", JSON.stringify(user));
       window.location.href = "/reminders";
@@ -25,6 +28,7 @@ function Login() {
         progress: undefined,
       });
     } catch (err) {
+      setIsLoading(false);
       toast(`Error: ${err}`, {
         position: "top-right",
         autoClose: 5000,
@@ -61,9 +65,9 @@ function Login() {
           color="primary"
           className="w-full mt-3 mb-2"
           onClick={handleLogin}
-          disabled={!validateLogin()}
+          disabled={!validateLogin() || isLoading}
         >
-          Login
+          {isLoading ? "Logging in..." : "Login"}
         </Button>
         <Link className="decoration-white text-sm" to="/forgot-password">
           Forgot Password

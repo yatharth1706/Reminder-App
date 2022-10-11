@@ -9,9 +9,11 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSignup = async () => {
     try {
+      setIsLoading(true);
       const user = await Auth.signUp({
         username: email,
         password,
@@ -23,6 +25,7 @@ function Signup() {
         },
       });
       console.log(user);
+      setIsLoading(false);
       localStorage.setItem("CognitoUser", JSON.stringify(user));
       window.location.href = "/reminders";
       toast(`User signed up successfully`, {
@@ -35,6 +38,7 @@ function Signup() {
         progress: undefined,
       });
     } catch (err) {
+      setIsLoading(false);
       toast(`Error: ${err}`, {
         position: "top-right",
         autoClose: 5000,
@@ -75,9 +79,9 @@ function Signup() {
           color="primary"
           className="w-full mt-3 mb-2"
           onClick={handleSignup}
-          disabled={!validateSignup()}
+          disabled={!validateSignup() || isLoading}
         >
-          Signup
+          {isLoading ? "Signing up..." : "Signup"}
         </Button>
         <Link className="decoration-white text-sm" to="/login">
           Already have an account? Login here

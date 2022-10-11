@@ -5,19 +5,20 @@ import { toast } from "react-toastify";
 import { Button, Input, Label } from "reactstrap";
 import Logo from "../images/Hash.png";
 
-function ForgotPassword() {
+function ConfirmCode() {
   const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleForgotPassword = async () => {
+  const handleConfirmCode = async () => {
     try {
       setIsLoading(true);
-      const results = await Auth.forgotPassword(email);
+      const results = await Auth.forgotPasswordSubmit(email, code, password);
       console.log(results);
       setIsLoading(false);
-
-      window.location.href = "/confirm";
-      toast(`Email is sent on your registered email address. Please check`, {
+      window.location.href = "/login";
+      toast(`Successfully reset the password`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -40,8 +41,8 @@ function ForgotPassword() {
     }
   };
 
-  const validateForgotPassword = () => {
-    return email.trim().length > 0;
+  const validateConfirmCode = () => {
+    return email.trim().length > 0 && code.trim().length > 0 && password.trim().length > 0;
   };
 
   return (
@@ -50,24 +51,31 @@ function ForgotPassword() {
         <img className="w-6" src={Logo} alt="HashNotify Logo" />
         <h1 className="text-xl">HashNotify</h1>
       </div>
-      <h5 className="mb-3 text-center">ForgotPassword</h5>
+      <h5 className="mb-3 text-center">Reset Password</h5>
+      <div className="mb-3">
+        <Label>Code</Label>
+        <Input type="text" value={code} onChange={(e) => setCode(e.target.value)} />
+      </div>
       <div className="mb-3">
         <Label>Email</Label>
-        <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
-
+      <div className="mb-3">
+        <Label>Password</Label>
+        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </div>
       <div className="text-center">
         <Button
           color="primary"
           className="w-full mt-3 mb-2"
-          onClick={handleForgotPassword}
-          disabled={!validateForgotPassword() || isLoading}
+          onClick={handleConfirmCode}
+          disabled={!validateConfirmCode() || isLoading}
         >
-          {isLoading ? "Processing..." : "Forgot Password"}
+          {isLoading ? "Resetting..." : "Reset"}
         </Button>
       </div>
     </div>
   );
 }
 
-export default ForgotPassword;
+export default ConfirmCode;

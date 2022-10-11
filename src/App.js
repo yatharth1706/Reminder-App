@@ -7,11 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ForgotPassword from "./components/ForgotPassword";
-import Confirm from "./components/Confirm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import WithNav from "./components/WithNav";
 import WithoutNav from "./components/WithoutNav";
+import ConfirmCode from "./components/ConfirmResetCode";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/confirm" element={<Confirm />} />
+            <Route path="/confirm" element={<ConfirmCode />} />
           </Route>
         </Routes>
         <ToastContainer />
