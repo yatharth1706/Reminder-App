@@ -40,9 +40,17 @@ function CreateReminderModal({ isOpen, toggle, refresh }) {
     });
   };
 
+  const getUserId = () => {
+    let userConfig = JSON.parse(localStorage.getItem("CognitoUser"));
+    let userId = userConfig["username"];
+    return userId;
+  };
+
   const handleCreate = async () => {
     try {
       setIsSaving(true);
+      let userId = getUserId();
+      console.log(userId);
       await DataStore.save(
         new Reminders({
           name: modalData?.Name,
@@ -51,6 +59,7 @@ function CreateReminderModal({ isOpen, toggle, refresh }) {
           message: modalData?.CustomMessage,
           scheduledOn: modalData?.ScheduledOn,
           status: "Pending",
+          userId: userId,
         })
       );
       setIsSaving(false);

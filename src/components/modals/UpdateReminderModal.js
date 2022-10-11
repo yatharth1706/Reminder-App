@@ -52,10 +52,18 @@ function UpdateReminderModal({ isOpen, toggle, refresh, rowData }) {
     });
   };
 
+  const getUserId = () => {
+    let userConfig = JSON.parse(localStorage.getItem("CognitoUser"));
+    let userId = userConfig["username"];
+    return userId;
+  };
+
   const handleUpdate = async () => {
     try {
       setIsSaving(true);
       const original = await DataStore.query(Reminders, rowData?.id);
+      let userId = getUserId();
+      console.log(userId);
       console.log(original);
       await DataStore.save(
         Reminders.copyOf(original, (existing) => {
@@ -65,6 +73,7 @@ function UpdateReminderModal({ isOpen, toggle, refresh, rowData }) {
           existing.message = modalData?.CustomMessage;
           existing.scheduledOn = modalData?.ScheduledOn;
           existing.status = "Pending";
+          existing.userId = userId;
         })
       );
       setIsSaving(false);

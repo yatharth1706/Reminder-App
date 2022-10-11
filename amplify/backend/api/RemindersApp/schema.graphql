@@ -6,5 +6,6 @@ type Reminders @model @auth(rules: [{allow: public}]) {
   message: String!
   scheduledOn: AWSDateTime!
   status: String!
+  userId: String!
 }
  

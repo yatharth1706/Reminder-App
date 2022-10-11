@@ -67,25 +67,43 @@ function Main() {
     setReminders([...existingRecords]);
   };
 
-  const getReminders = async () => {
-    setIsFetching(true);
-    let models = [];
-    console.log(sideNav);
-    if (sideNav === "Pending") {
-      models = await DataStore.query(Reminders, (rem) => rem.status("eq", "Pending"));
-    } else if (sideNav === "Completed") {
-      models = await DataStore.query(Reminders, (rem) => rem.status("eq", "Completed"));
-    } else if (sideNav === "All") {
-      models = await DataStore.query(Reminders);
-    } else {
-      models = await DataStore.query(Reminders);
-    }
+  const getUserId = () => {
+    let userConfig = JSON.parse(localStorage.getItem("CognitoUser"));
+    let userId = userConfig["username"];
+    return userId;
+  };
 
-    console.log(models, typeof models);
-    setReminders([...models]);
-    setAllReminders([...models]);
-    setTotalRecords(models.length);
-    setIsFetching(false);
+  const getReminders = async () => {
+    try {
+      let userId = getUserId();
+      console.log(userId);
+      setIsFetching(true);
+      let models = [];
+      console.log(sideNav);
+      if (sideNav === "Pending") {
+        models = await DataStore.query(
+          Reminders,
+          (rem) => rem.status("eq", "Pending") && rem.userId("eq", userId)
+        );
+      } else if (sideNav === "Completed") {
+        models = await DataStore.query(
+          Reminders,
+          (rem) => rem.status("eq", "Completed") && rem.userId("eq", userId)
+        );
+      } else if (sideNav === "All") {
+        models = await DataStore.query(Reminders, (rem) => rem.userId("eq", userId));
+      } else {
+        models = await DataStore.query(Reminders, (rem) => rem.userId("eq", userId));
+      }
+
+      console.log(models, typeof models);
+      setReminders([...models]);
+      setAllReminders([...models]);
+      setTotalRecords(models.length);
+      setIsFetching(false);
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const paginate = () => {

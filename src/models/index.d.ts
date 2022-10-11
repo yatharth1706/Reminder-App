@@ -12,6 +12,7 @@ export declare class Reminders {
   readonly message: string;
   readonly scheduledOn: string;
   readonly status: string;
+  readonly userId: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Reminders, RemindersMetaData>);
