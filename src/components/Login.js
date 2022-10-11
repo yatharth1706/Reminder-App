@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button, Input, Label } from "reactstrap";
+import Logo from "../images/Hash.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -41,7 +42,11 @@ function Login() {
   };
 
   return (
-    <div className="bg-white drop-shadow-2xl rounded-md w-2/6 p-8 mx-auto mt-12">
+    <div className="bg-white drop-shadow-2xl rounded-md w-2/6 p-8 mx-auto mt-20">
+      <div className="flex space-x-4 items-start justify-center mb-2">
+        <img className="w-6" src={Logo} alt="HashNotify Logo" />
+        <h1 className="text-xl">HashNotify</h1>
+      </div>
       <h5 className="mb-3 text-center">Login</h5>
       <div className="mb-3">
         <Label>Email</Label>

@@ -10,20 +10,25 @@ import ForgotPassword from "./components/ForgotPassword";
 import Confirm from "./components/Confirm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import WithNav from "./components/WithNav";
+import WithoutNav from "./components/WithoutNav";
 
 function App() {
   return (
     <Router>
       <div className="font-nunito h-full max-w-7xl mx-auto">
         {/* Navbar */}
-        <Navbar />
         {/* Routes */}
         <Routes>
-          <Route path="/reminders" element={<Reminder />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/confirm" element={<Confirm />} />
+          <Route element={<WithNav />}>
+            <Route path="/reminders" element={<Reminder />} />
+          </Route>
+          <Route element={<WithoutNav />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/confirm" element={<Confirm />} />
+          </Route>
         </Routes>
         <ToastContainer />
       </div>
