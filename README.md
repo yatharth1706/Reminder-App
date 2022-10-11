@@ -17,8 +17,8 @@ Built using React, AWS Amplify
 - Reminder business logic - (In last)
 - Add toast notifications when some operations are performed ✅
 - Forgot password and set new password remaining ✅
-- user details to pass while crud operations (Picked)
-- Show only logged in user reminders (Picked)
+- user details to pass while crud operations ✅
+- Show only logged in user reminders ✅
 
 # Getting Started with Create React App
 
