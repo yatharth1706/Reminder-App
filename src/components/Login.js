@@ -69,7 +69,11 @@ function Login() {
         >
           {isLoading ? "Logging in..." : "Login"}
         </Button>
-        <Link className="decoration-white text-sm" to="/forgot-password">
+        <Link className="decoration-white text-sm" to="/signup">
+          Don't have an account. Create here
+        </Link>
+        <br />
+        <Link className="decoration-white text-gray-700 text-xs" to="/forgot-password">
           Forgot Password
         </Link>
       </div>

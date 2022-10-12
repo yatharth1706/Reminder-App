@@ -21,6 +21,7 @@ function App() {
         {/* Routes */}
         <Routes>
           <Route element={<WithNav />}>
+            <Route path="/" element={<Reminder />} />
             <Route path="/reminders" element={<Reminder />} />
           </Route>
           <Route element={<WithoutNav />}>

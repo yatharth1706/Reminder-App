@@ -69,7 +69,7 @@ function Main() {
 
   const getUserId = () => {
     let userConfig = JSON.parse(localStorage.getItem("CognitoUser"));
-    let userId = userConfig["username"];
+    let userId = userConfig?.username;
     return userId;
   };
 

@@ -55,5 +55,12 @@
         ]
       }
     }
+  },
+  "function": {
+    "sendReminders": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }

@@ -5,7 +5,7 @@ import Main from "./Main";
 function Reminder() {
   useEffect(() => {
     checkUserValidated();
-  });
+  }, []);
 
   const checkUserValidated = () => {
     if (!localStorage.getItem("CognitoUser")) {
